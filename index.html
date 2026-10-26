@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECG Monitor</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 75px 0 25px;
+}
+
+.controls, .scenario-controls {
+    width: 80vw;
+    text-align: center;
+    line-height: 2;
+}
+
+.controls button, .scenario-controls button {
+    margin: 2px 3px;
+}
+
+.status {
+    width: 80vw;
+    margin-bottom: -10px;
+    font-family: monospace;
+    color: #ff3030;
+    text-align: left;
+}
+
+.panel {
+    width: 80vw;
+    height: 180px;
+    border: 1px solid #fff;
+    overflow: hidden;
+    background: #000;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    box-sizing: border-box;
+    z-index: 9999;
+    background: #000;
+}
+
+.spinning-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid white;
+    object-fit: cover;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.klouny {
+    background-color: white;
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.scenario-title {
+    width: 80vw;
+    color: #aaa;
+    font: 12px monospace;
+    text-align: left;
+    margin-bottom: -12px;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+</style>
+</head>
+<body>
+
+<div class="navbar">
+    <img class="spinning-avatar" src="troll.png" alt="Avatar">
+    <h5 style="margin: 5px;">folkvalleyestablished</h5>
+    <h5 style="position:absolute;left:50%;transform:translateX(-50%);margin:0;">heartbeat stuff</h5>
+    <div class="klouny"></div>
+</div>
+
+<div class="controls">
+    <button id="add">Add Pulse</button>
+    <button id="lower">Lower Pulse</button>
+    <button id="death">Death</button>
+    <button id="resurrect">Resurrect</button>
+    <button id="arrhythmia">Arrhythmia: OFF</button>
+    <button id="pause">Pause</button>
+    <button id="sound">Sound: ON</button>
+    <button id="normal">Normal</button>
+    <button id="tachy">Tachycardia</button>
+    <button id="brady">Bradycardia</button>
+    <button id="weak">Weak Pulse</button>
+    <button id="strong">Strong Pulse</button>
+    <button id="reset">Reset</button>
+</div>
+
+<div class="status" id="status"></div>
+
+<div class="panel">
+    <canvas id="ecg"></canvas>
+</div>
+
+<div class="scenario-title">SITUATIONS / TRAUMA</div>
+
+<div class="scenario-controls">
+    <button id="fall">Fall from Height</button>
+    <button id="arm">Arm Loss</button>
+    <button id="bloodLoss">Blood Loss</button>
+    <button id="shock">Shock</button>
+    <button id="heartAttack">Heart Attack</button>
+    <button id="drowning">Drowning</button>
+    <button id="electric">Electrocution</button>
+    <button id="pain">Severe Pain</button>
+    <button id="hypothermia">Hypothermia</button>
+    <button id="recover">Stabilize</button>
+</div>
+
+<script src="./hbloop.js"></script>
+</body>
+</html>
